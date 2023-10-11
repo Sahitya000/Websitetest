@@ -3,23 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interactive Indian Map</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Indian Map Generator</title>
+    <style>
+        #map-container {
+            position: relative;
+            width: 600px;
+            height: 400px;
+        }
+        #india-map {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Interactive Indian Map</h1>
-    </header>
-    <main>
-        <div id="map"></div>
-        <input type="text" id="textInput" placeholder="Enter text...">
-        <button id="addTextBtn">Add Text</button>
-    </main>
-    <div id="overlay" class="overlay" style="display:none;">
-        <div class="overlay-content">
-            <p>Temporary Ad</p>
-        </div>
+    <h1>Generate Indian Map</h1>
+    <label for="state">Select a state:</label>
+    <select id="state" onchange="updateMap()">
+        <option value="Andhra Pradesh">Andhra Pradesh</option>
+        <!-- Add more options for other states -->
+    </select>
+    <div id="map-container">
+        <img id="india-map" src="india_map.png" alt="India Map">
     </div>
-    <script src="script.js"></script>
+
+    <script>
+        function updateMap() {
+            var selectedState = document.getElementById('state').value;
+            var mapElement = document.getElementById('india-map');
+            mapElement.src = selectedState.toLowerCase().replace(/\s/g, '_') + '_map.png';
+        }
+    </script>
 </body>
 </html>
